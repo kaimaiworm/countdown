@@ -11,11 +11,17 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: #0f0f0f;
+      background: url('ulaub.jpg') center/cover no-repeat;
       font-family: 'Segoe UI', sans-serif;
       color: white;
     }
-    .container { text-align: center; }
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 2.5rem 3rem;
+      border-radius: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
     h1 { font-size: 2rem; margin-bottom: 1rem; color: #aaa; }
     .timer {
       display: flex;
@@ -44,7 +50,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Countdown bis zur Rente</h1>
+    <h1>Countdown bis Muttis Rente</h1>
     <div class="timer" id="timer">
       <div class="unit"><span class="number" id="days">00</span><span class="label">Tage</span></div>
       <div class="unit"><span class="number" id="hours">00</span><span class="label">Stunden</span></div>
