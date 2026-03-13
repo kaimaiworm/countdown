@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #0f0f0f;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+    .container { text-align: center; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; color: #aaa; }
+    .timer {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .number {
+      font-size: 5rem;
+      font-weight: bold;
+      color: #fff;
+      min-width: 120px;
+    }
+    .label {
+      font-size: 0.9rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .done { font-size: 3rem; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Countdown bis zur Rente</h1>
+    <div class="timer" id="timer">
+      <div class="unit"><span class="number" id="days">00</span><span class="label">Tage</span></div>
+      <div class="unit"><span class="number" id="hours">00</span><span class="label">Stunden</span></div>
+      <div class="unit"><span class="number" id="minutes">00</span><span class="label">Minuten</span></div>
+      <div class="unit"><span class="number" id="seconds">00</span><span class="label">Sekunden</span></div>
+    </div>
+    <div class="done" id="done">🎉 Zeit abgelaufen!</div>
+  </div>
+
+  <script>
+    const target = new Date("2026-08-31T00:00:00");
+
+    function update() {
+      const now = new Date();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.getElementById("timer").style.display = "none";
+        document.getElementById("done").style.display = "block";
+        return;
+      }
+
+      const days    = Math.floor(diff / 86400000);
+      const hours   = Math.floor((diff % 86400000) / 3600000);
+      const minutes = Math.floor((diff % 3600000) / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById("days").textContent    = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent   = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    update();
+    setInterval(update, 1000);
+  </script>
+</body>
+</html>
